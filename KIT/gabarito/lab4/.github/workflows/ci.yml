@@ -1,0 +1,28 @@
+# CI do workspace: os mesmos portões do pre-commit, agora na nuvem, a cada PR.
+# Sem GitHub? Rode igual na sua máquina: python ferramentas/ci_local.py
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read              # menor privilégio: o CI só lê o código
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4          # Lab 6 🔴: troque a tag pelo SHA do release
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependências (versões fixas)
+        run: pip install -r requirements.txt
+      - name: Loops válidos
+        run: python ferramentas/validar.py
+      - name: Skills bem escritas
+        run: python ferramentas/checar_skills.py
+      - name: Segurança básica
+        run: python ferramentas/auditar.py .
+      - name: A/B não regrediu
+        run: python ferramentas/ab.py --falhar-se-pior

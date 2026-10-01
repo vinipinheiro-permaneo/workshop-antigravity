@@ -1,0 +1,17 @@
+# Política do workspace como código: o que o agente só faz depois de pedir.
+# O validador confere se todo `requer_aprovacao` dos LOOPS aponta para um id que existe aqui.
+kind: politica
+dono: dupla
+aprovacao_explicita:
+  - id: POL-CUSTO
+    escopo: "bq, gcloud ou qualquer API paga"
+    regra: "rodar primeiro em modo de estimativa (bq --dry_run) e pedir antes da execução real"
+  - id: POL-DADOS
+    escopo: "dado real de cliente (nome, e-mail, CPF, compras)"
+    regra: "nunca entra neste workspace; use os exemplos de pedidos/"
+  - id: POL-WEB
+    escopo: "acessar sites ou APIs externas"
+    regra: "só com pedido explícito, e só leitura"
+escrita:
+  somente_em: ["./**"]
+  nunca_em: ["~/Desktop/MAIN/**", "~/.gemini/**"]

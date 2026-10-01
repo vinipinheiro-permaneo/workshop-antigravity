@@ -1,0 +1,6 @@
+# Quem precisa aprovar mudança em cada área. Troque pelos @ do GitHub da sua dupla e do facilitador.
+# A última regra que casar vence.
+*              @pessoa-1 @pessoa-2
+/contrato/     @facilitador
+/.agents/      @facilitador @pessoa-1
+/.github/      @facilitador

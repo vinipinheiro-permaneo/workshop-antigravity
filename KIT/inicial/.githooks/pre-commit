@@ -1,0 +1,5 @@
+#!/bin/sh
+# Portão local: nenhum commit passa com loop inválido ou risco de segurança.
+# Ative uma vez, na raiz do workspace:  git config core.hooksPath .githooks
+python ferramentas/validar.py || { echo "commit bloqueado: corrija os loops (veja acima)"; exit 1; }
+python ferramentas/auditar.py . || { echo "commit bloqueado: risco de segurança (veja acima)"; exit 1; }

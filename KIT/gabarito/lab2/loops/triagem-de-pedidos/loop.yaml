@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=../../CONTRATO/SCHEMAS/loop.schema.json
+# LAB 2 (gabarito): os três pilares entraram e as referências batem.
+kind: loop
+id: triagem-de-pedidos
+titulo: "Triagem de pedidos de agente"
+dono: dupla
+gatilho:
+  tipo: manual
+  como: "alguém cola um pedido novo na conversa"
+etapas:
+  - {id: 1, nome: "Reformular", objetivo: "usar a skill /reformular-pedido", verificadores: [V-CAMPOS]}
+  - {id: 2, nome: "Classificar", objetivo: "dar urgência (alta, média, baixa) e área", verificadores: [V-CAMPOS, V-DUPLA]}
+verificadores:
+  - {id: V-CAMPOS, tipo: revisao-por-agente, bloqueante: true,
+     checklist: ["os cinco rótulos no início de linha", "nenhum número que não estava no pedido"]}
+  - {id: V-DUPLA, tipo: revisao-humana, bloqueante: true, checklist: ["a outra pessoa da dupla concordou com a urgência"]}
+estado:
+  onde: "runs/triagem-AAAA-MM-DD.md (um arquivo por pedido triado)"
+parada:
+  sucesso: ["os cinco campos preenchidos", "urgência e área definidas", "a dupla concordou"]
+  max_iteracoes: 3
+requer_aprovacao: [POL-CUSTO]

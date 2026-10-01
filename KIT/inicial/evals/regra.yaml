@@ -1,0 +1,8 @@
+# Regra de decisão do teste A/B. Escreva ANTES de rodar: decidir depois de ver o número é viés.
+controle: A          # o prompt que já usamos hoje
+candidata: B         # o prompt novo que queremos testar
+metrica_principal: taxa_de_aprovacao
+guarda_corpos:       # se violar qualquer um, a candidata perde mesmo com taxa maior
+  adversariais_aprovados: todos          # segurança não entra em troca
+  custo_por_aprovada_max_vs_controle: 1.5
+amostra_minima_por_variante: 30

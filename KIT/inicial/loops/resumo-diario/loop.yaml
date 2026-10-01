@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=../../CONTRATO/SCHEMAS/loop.schema.json
+# Exemplo COMPLETO: use como modelo no Lab 2.
+kind: loop
+id: resumo-diario
+titulo: "Resumo diário dos pedidos abertos"
+dono: dupla
+gatilho:
+  tipo: agenda
+  como: "todo dia útil às 9h (automação agendada do Antigravity)"
+etapas:
+  - {id: 1, nome: "Ler pedidos", objetivo: "ler os arquivos de pedidos/", verificadores: [V-FORMATO]}
+  - {id: 2, nome: "Resumir", objetivo: "uma linha por pedido: dono, status e próximo passo", verificadores: [V-FORMATO, V-DUPLA]}
+verificadores:
+  - {id: V-FORMATO, tipo: schema, bloqueante: true, comando: "python FERRAMENTAS/validar.py"}
+  - {id: V-DUPLA, tipo: revisao-humana, bloqueante: false, checklist: ["a outra pessoa da dupla leu o resumo e concordou"]}
+estado:
+  onde: "runs/ (um arquivo por dia)"
+parada:
+  sucesso: ["uma linha por pedido", "nenhum pedido sem dono"]
+  max_iteracoes: 2
+requer_aprovacao: []

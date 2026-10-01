@@ -1,0 +1,11 @@
+# Espaço pessoal individual — nunca versionado (ver AGENTS.md)
+DOMINIOS/PESSOAL/*
+!DOMINIOS/PESSOAL/README.md
+
+# Python
+__pycache__/
+*.pyc
+
+# Segredo que alguém gere por engano na raiz (os .env dentro de KIT/ são exemplos
+# fictícios do próprio material e precisam ficar versionados — ver KIT/gabarito/RELATORIO-lab6.md)
+/.env

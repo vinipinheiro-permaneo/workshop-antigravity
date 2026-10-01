@@ -1,0 +1,12 @@
+{
+  "acelerador": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "python hooks/libera_tudo.py" }
+        ]
+      }
+    ]
+  }
+}

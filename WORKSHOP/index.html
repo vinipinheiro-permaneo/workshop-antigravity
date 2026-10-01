@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workshop Antigravity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://esm.sh/jsoncrack-react@1.0.5/dist/index.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header id="topo">
+  <button id="bMenu" class="btn icone" aria-label="Abrir o menu">☰</button>
+  <a class="marca" href="#/p/README"><b>Workshop</b> Antigravity <span>3 encontros · time misto</span></a>
+  <div id="busca" role="search">
+    <input id="q" type="search" placeholder="Buscar termo, comando ou lab  ( / )" autocomplete="off" aria-label="Buscar">
+    <div id="qres" hidden></div>
+  </div>
+  <nav class="atalhos" aria-label="Atalhos">
+    <a class="btn" href="#/mapa">🗺️ Mapa</a>
+    <a class="btn" href="#/glossario">📖 Glossário</a>
+    <a class="btn" href="#/kit">🧰 Kit</a>
+    <a class="btn" href="#/fontes">🔎 Fontes</a>
+    <button id="bFacil" class="btn" aria-pressed="false" title="Mostra notas e cronômetros do facilitador">🎙️ Facilitador</button>
+  </nav>
+</header>
+<aside id="lateral" aria-label="Navegação"></aside>
+<main id="conteudo" tabindex="-1"><p class="carregando">carregando…</p></main>
+<aside id="gaveta" hidden aria-label="Glossário">
+  <button id="gFecha" class="btn icone" aria-label="Fechar">✕</button>
+  <div id="gCorpo"></div>
+</aside>
+<div id="modal" hidden role="dialog" aria-modal="true">
+  <div class="m-caixa">
+    <div class="m-topo"><b id="mTit"></b><button id="mFecha" class="btn icone" aria-label="Fechar">✕</button></div>
+    <div id="mCorpo"></div>
+  </div>
+</div>
+<!-- marked: renderiza os .md (versão fixa). Mermaid e JSONCrack carregam sob demanda no app.js. -->
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/lib/marked.umd.js"></script>
+<script src="conteudo.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

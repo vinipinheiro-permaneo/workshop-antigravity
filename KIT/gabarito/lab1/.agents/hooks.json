@@ -1,0 +1,12 @@
+{
+  "guarda-de-custo": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          { "type": "command", "command": "python hooks/guarda_custo.py", "timeout": 10 }
+        ]
+      }
+    ]
+  }
+}

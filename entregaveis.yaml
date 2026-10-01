@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=../../CONTRATO/SCHEMAS/registro.schema.json
+kind: entregaveis
+missao: 2026-09-workshop-antigravity
+dono: claude-code
+atualizado: 2026-09-29
+itens:
+  - {id: DLV-01, titulo: "Fontes verificadas (doc embutida, --help, doc oficial lida na data)", fase: A, depende_de: [], status: em_revisao,
+     criterios_de_aceite: ["todo recurso de ferramenta citado nos .md tem [SRC-nn] no parágrafo", "divergências entre doc online e versão instalada registradas em fontes.yaml"]}
+  - {id: DLV-02, titulo: "Kit de labs (inicial + gabarito + caça ao risco + autoteste)", fase: B, depende_de: [DLV-01], status: em_revisao,
+     criterios_de_aceite: ["kit/testar.py passa sem rede, sem modelo e sem nuvem", "todo lab tem trilha 🟢 e desafio 🔴 com gabarito"]}
+  - {id: DLV-03, titulo: "Roteiro do Dia 1: explorar o Antigravity", fase: C, depende_de: [DLV-02], status: em_revisao,
+     criterios_de_aceite: ["núcleo ≤ 60 min e total ≤ 90 min", "slash commands, skills, rules, hooks, MCP, plugins, subagentes, SDK, ADK e Agent Platform cobertos"]}
+  - {id: DLV-04, titulo: "Roteiro do Dia 2: engenharia de software para agentes", fase: C, depende_de: [DLV-02], status: em_revisao,
+     criterios_de_aceite: ["núcleo ≤ 60 min e total ≤ 90 min", "arquitetura de diretórios, formato por consumidor, YAML com schema, automação e JSONCrack praticados em lab"]}
+  - {id: DLV-05, titulo: "Roteiro do Dia 3: DataOps e qualidade", fase: C, depende_de: [DLV-02], status: em_revisao,
+     criterios_de_aceite: ["núcleo ≤ 60 min e total ≤ 90 min", "Git, CI/CD, ambientes, QA, code review, A/B test e segurança praticados em lab"]}
+  - {id: DLV-06, titulo: "Comece aqui + glossário para público misto", fase: C, depende_de: [DLV-02], status: em_revisao,
+     criterios_de_aceite: ["preparação da máquina passo a passo (Windows e bash)", "todo termo com definição 🟢 simples e 🔴 técnica"]}
+  - {id: DLV-07, titulo: "Site do workshop (index.html) gerado dos .md", fase: D, depende_de: [DLV-03, DLV-04, DLV-05, DLV-06], status: em_revisao,
+     criterios_de_aceite: ["montar.py --verificar sem erro", "node --check sem erro e CDNs respondendo", "abre direto do disco (file://)"]}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loop.schema.json",
+  "title": "Loop: um processo que o agente repete. Sem verificar, estado e parada, não é loop.",
+  "type": "object",
+  "required": ["kind", "id", "titulo", "dono", "gatilho", "etapas", "verificadores", "estado", "parada"],
+  "additionalProperties": false,
+  "properties": {
+    "kind": {"const": "loop", "description": "sempre 'loop'"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "igual ao nome da pasta, em kebab-case"},
+    "titulo": {"type": "string", "minLength": 5},
+    "dono": {"type": "string", "description": "quem pode editar este arquivo (um escritor por arquivo)"},
+    "gatilho": {
+      "type": "object",
+      "required": ["tipo", "como"],
+      "properties": {
+        "tipo": {"enum": ["manual", "agenda", "evento"], "description": "quem começa o loop"},
+        "como": {"type": "string"}
+      }
+    },
+    "etapas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "nome", "objetivo", "verificadores"],
+        "properties": {
+          "id": {"type": ["integer", "string"]},
+          "nome": {"type": "string"},
+          "objetivo": {"type": "string"},
+          "verificadores": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "verificadores": {
+      "type": "array",
+      "minItems": 1,
+      "description": "pilar VERIFICAR: como a máquina sabe que deu certo",
+      "items": {
+        "type": "object",
+        "required": ["id", "tipo", "bloqueante"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^V-[A-Z0-9-]+$"},
+          "tipo": {"enum": ["schema", "teste", "revisao-humana", "revisao-por-agente"]},
+          "bloqueante": {"type": "boolean"},
+          "comando": {"type": "string"},
+          "checklist": {"type": "array", "items": {"type": "string"}}
+        },
+        "anyOf": [{"required": ["comando"]}, {"required": ["checklist"]}]
+      }
+    },
+    "estado": {
+      "type": "object",
+      "required": ["onde"],
+      "description": "pilar ESTADO: onde fica o registro de cada execução",
+      "properties": {"onde": {"type": "string"}}
+    },
+    "parada": {
+      "type": "object",
+      "required": ["sucesso", "max_iteracoes"],
+      "description": "pilar PARADA: quando termina (bem ou mal)",
+      "properties": {
+        "sucesso": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "max_iteracoes": {"type": "integer", "minimum": 1, "maximum": 10}
+      }
+    },
+    "requer_aprovacao": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^POL-[A-Z0-9-]+$"},
+      "description": "ids de CONTRATO/politica.yaml que exigem pedir antes"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=../../CONTRATO/SCHEMAS/missao.schema.json
+kind: missao
+id: 2026-09-workshop-antigravity
+titulo: "Workshop Antigravity em 3 encontros: explorar, engenharia de software, DataOps e qualidade"
+loop: workshop
+dominio: permaneo
+dono: claude-code
+criada: 2026-09-29
+finalidade: "capacitar o time misto (analistas + estagiários) a operar agentes no Antigravity com a disciplina da arquitetura de LOOPS"
+brief: BRIEF.md
+fase_atual: D
+
+gates:
+  - {id: G0, nome: "Escopo: público misto, 3 encontros de 1h a 1h30, entrega em .html + .md + kit", quem: responsável, status: aprovado,
+     aprovado_em: 2026-09-29, registro: "BRIEF.md › 2"}
+  - {id: G-WEB, nome: "Leitura da doc oficial online (antigravity.google e ADK), só leitura", quem: responsável, status: aprovado,
+     aprovado_em: 2026-09-29, registro: "BRIEF.md › 2"}
+  - {id: G-ACEITE, nome: "Responsável abre o site, lê um encontro inteiro e roda um lab do kit", quem: responsável, status: pendente}
+
+fases:
+  A:
+    nome: Fontes
+    contexto_brief: ["1", "2", "4"]
+    registros: [fontes.yaml]
+    entregaveis: [DLV-01]
+    gate_entrada: [G0, G-WEB]
+  B:
+    nome: Kit de labs
+    contexto_brief: ["2", "3"]
+    registros: [fontes.yaml]
+    entregaveis: [DLV-02]
+  C:
+    nome: Roteiro
+    contexto_brief: ["1", "2", "3"]
+    registros: [fontes.yaml, entregaveis.yaml]
+    entregaveis: [DLV-03, DLV-04, DLV-05, DLV-06]
+  D:
+    nome: Site e aceite
+    contexto_brief: ["2"]
+    registros: [entregaveis.yaml]
+    entregaveis: [DLV-07]
+    gate_saida: [G-ACEITE]
+
+criterios_de_pronto:
+  - "`python LOOPS/WORKSHOP/montar.py MISSOES/2026-09-WORKSHOP-ANTIGRAVITY --verificar` sem erro"
+  - "`python MISSOES/2026-09-WORKSHOP-ANTIGRAVITY/KIT/testar.py` sem falha"
+  - "gate G-ACEITE aprovado"
+
+saida:
+  site: workshop/index.html
+  roteiro: workshop/*.md
+  kit: kit/

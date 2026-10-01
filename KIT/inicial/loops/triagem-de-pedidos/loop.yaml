@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../../CONTRATO/SCHEMAS/loop.schema.json
+# LAB 2: este loop está INCOMPLETO DE PROPÓSITO.
+# Rode `python FERRAMENTAS/validar.py`, leia os erros e corrija até passar.
+# Dica: compare com LOOPS/resumo-diario/loop.yaml.
+kind: loop
+id: triagem-de-pedidos
+titulo: "Triagem de pedidos de agente"
+dono: dupla
+gatilho:
+  tipo: manual
+  como: "alguém cola um pedido novo na conversa"
+etapas:
+  - {id: 1, nome: "Reformular", objetivo: "usar a skill /reformular-pedido", verificadores: [V-CAMPOS]}
+  - {id: 2, nome: "Classificar", objetivo: "dar urgência (alta, média, baixa) e área", verificadores: [V-CAMPOS]}
+requer_aprovacao: [POL-CUSTOS]

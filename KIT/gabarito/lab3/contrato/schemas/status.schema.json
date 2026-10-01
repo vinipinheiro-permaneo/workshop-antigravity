@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "status.schema.json",
+  "title": "Status dos LOOPS: CONTRATO de saída do agy -p --json-schema",
+  "type": "object",
+  "required": ["LOOPS", "resumo"],
+  "additionalProperties": false,
+  "properties": {
+    "LOOPS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "valido", "problemas"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "valido": {"type": "boolean"},
+          "problemas": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "resumo": {"type": "string", "description": "no formato 'N válidos · M com problema'"}
+  }
+}

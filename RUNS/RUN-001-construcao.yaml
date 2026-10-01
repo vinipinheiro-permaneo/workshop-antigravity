@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=../../../CONTRATO/SCHEMAS/run.schema.json
+kind: run
+id: RUN-001
+missao: 2026-09-workshop-antigravity
+loop: workshop
+fase: n/a
+data: 2026-09-29
+executor: "claude-code (Opus 5.5), sessão manual; pesquisa online feita por 1 subagente, só leitura"
+objetivo: "primeira execução do loop workshop: 3 encontros de 1h a 1h30 sobre Antigravity para o time misto, em .md + .html + kit"
+tentou:
+  - "perguntar escopo antes de escrever: público, duração, formato e doc online (V-ESCOPO, respondido pelo responsável)"
+  - "levantar a versão instalada: agy 1.2.13 (--help e doc embutida), google-adk 2.3.0 (--help e código), gh 2.97.0 e git 2.52"
+  - "confirmar na doc oficial (G-WEB) slash commands, permissões, sandbox, hooks, subagentes, headless, changelog e ADK"
+  - "montar o kit com 6 labs (🟢 + 🔴), gabarito, caça ao risco e autoteste"
+  - "escrever os .md como fonte única e gerar o site a partir deles (montar.py → conteudo.js)"
+  - "abrir o site num navegador de verdade (Edge headless via DevTools em localhost) e corrigir o que apareceu"
+nao_fez:
+  - "rodar o agy de verdade nos labs: o kit testa os scripts, hooks e schemas, mas não a conversa com o modelo (custaria cota)"
+  - "rodar o agente ADK com modelo (💲): só a estrutura foi conferida, sem chamada ao modelo"
+  - "testar o --sandbox do CLI no Windows: a doc não confirma; o material avisa e dá a alternativa"
+resultado:
+  encontros: 3
+  minutos_por_encontro: "núcleo 60 + extensão 30"
+  labs: 6
+  termos_no_glossario: 53
+  fontes: 14
+  checagens_do_kit: 31
+  corrigido_depois_do_navegador:
+    - "modal do JSONCrack aparecia aberto (display:flex vencia o atributo hidden)"
+    - "gaveta do glossário não fechava ao trocar de página"
+    - "texto entre parênteses sumia nos cartões do glossário"
+    - "mapa JSONCrack comprido demais (glossário e kit viraram resumo)"
+    - "bloco de 3 min espremido na linha do tempo"
+    - "telas de glossário, kit e mapa herdavam a rolagem da página anterior"
+verificadores:
+  - {id: V-ESCOPO, resultado: passou, nota: "respostas do responsável no BRIEF.md › 2"}
+  - {id: V-SCHEMA, resultado: passou, nota: "loopctl validar com o kit fora da validação (CONTRATO/formatos.yaml › fora_da_validacao)"}
+  - {id: V-KIT, resultado: passou, nota: "31/31 checagens, sem rede, sem modelo, sem nuvem"}
+  - {id: V-WORKSHOP, resultado: passou, nota: "0 erro e 0 aviso; injeção de 5 falhas numa cópia confirmou que ele reprova"}
+  - {id: V-FRONT, resultado: passou, nota: "node --check nos .js; CDNs com 200; 6 rotas distintas (9 aberturas) no Edge headless via DevTools, 0 erro de JavaScript; screenshots conferidos"}
+  - {id: V-GATE, resultado: nao_rodou}
+custo:
+  bytes_bigquery: 0
+  chamadas_mcp: 0
+  chamadas_web: 66
+  nota: "66 = total de usos de ferramenta do subagente (teto das leituras web), só em antigravity.google, adk.dev e github.com/google/adk-python. Fora da conta: status HTTP dos CDNs e o carregamento dos CDNs pelo navegador headless (exceção de POL-WEB)"
+aceito: pendente
+mudancas_aceitas: 0
+proximo_passo: "Responsável abre MISSOES/2026-09-WORKSHOP-ANTIGRAVITY/WORKSHOP/index.html, lê um encontro, roda um lab do kit e aprova (G-ACEITE)"

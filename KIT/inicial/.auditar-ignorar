@@ -1,0 +1,2 @@
+# Exceções da auditoria: caminho:REGRA  # motivo (sem motivo, a exceção não vale)
+evals/respostas-A.jsonl:SEC-01  # vazamento proposital da variante A no Lab 5 (chave falsa de treino)

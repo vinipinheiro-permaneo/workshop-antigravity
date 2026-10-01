@@ -1,0 +1,11 @@
+# segredos nunca vão para o git
+.env
+*.env
+# gerados (refaça com o comando, não versione)
+mapa.html
+saida*.json
+__pycache__/
+*.pyc
+# trilhas locais dos hooks
+.agents/hooks/decisoes.jsonl
+.agents/hooks/tentativas.json

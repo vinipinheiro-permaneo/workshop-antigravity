@@ -1,0 +1,120 @@
+# yaml-language-server: $schema=../../CONTRATO/SCHEMAS/registro.schema.json
+# Fontes de todo recurso de ferramenta citado no workshop. No site aparecem só nome, versão, data e URL pública.
+# Onde a doc online diverge da versão instalada, o lab segue a instalada e o texto avisa.
+kind: fontes
+missao: 2026-09-workshop-antigravity
+dono: claude-code
+atualizado: 2026-09-29
+itens:
+  - id: SRC-01
+    nome: "Antigravity CLI: agy --help"
+    versao: "1.2.13"
+    classe: primaria_sistema
+    origem_raiz: R-AGY-LOCAL
+    acesso: "local: agy --help e agy --version"
+    status: inventariada_local
+    sensibilidade: publico
+    cobre: "flags (--sandbox, --mode, -p, --output-format, --json-schema, --agent, --effort, --add-dir) e subcomandos (agents, mcp, models, plugin, remote-control, changelog)"
+  - id: SRC-02
+    nome: "Doc embutida do agy: guia do Antigravity (CLI, app 2.0, IDE, SDK Python)"
+    versao: "1.2.13"
+    classe: externa
+    origem_raiz: R-AGY-EMBUTIDA
+    acesso: "local: skill antigravity-guide que vem com o agy"
+    status: inventariada_local
+    sensibilidade: publico
+    cobre: "superfícies, configurações do app 2.0, modalidades da IDE, SDK google-antigravity"
+  - id: SRC-03
+    nome: "Doc embutida do agy: sistema de customização (rules, skills, plugins, hooks, MCP, JSON configs)"
+    versao: "1.2.13"
+    classe: externa
+    origem_raiz: R-AGY-EMBUTIDA
+    acesso: "local: skill agy-customizations que vem com o agy"
+    status: inventariada_local
+    sensibilidade: publico
+    cobre: "descoberta em .agents/, prioridade de carga, divulgação progressiva, contrato stdin/stdout dos hooks, limites de rules"
+  - id: SRC-04
+    nome: "Skills embutidas do agy: automation, migrate-workflows, plugin, permissioned-github"
+    versao: "1.2.13"
+    classe: externa
+    origem_raiz: R-AGY-EMBUTIDA
+    acesso: "local: builtin/skills do agy"
+    status: inventariada_local
+    sensibilidade: publico
+    cobre: "automação agendada (sidecar com cron), workflows obsoletos → skills, plugins"
+  - id: SRC-05
+    nome: "google-adk instalado: adk --help e código do pacote"
+    versao: "2.3.0"
+    classe: primaria_codigo
+    origem_raiz: R-ADK-LOCAL
+    acesso: "local: adk --help, adk <cmd> --help e leitura do pacote google.adk"
+    status: inventariada_local
+    sensibilidade: publico
+    cobre: "LoopAgent, exit_loop, output_key e {estado?}, callbacks, root_agent.yaml, variáveis do .env (GOOGLE_GENAI_USE_ENTERPRISE), modelo padrão do adk create, porta do adk web, Workflow"
+  - id: SRC-06
+    nome: "Doc oficial do Antigravity CLI: referência e slash commands"
+    classe: externa
+    origem_raiz: R-AGY-DOCS
+    acesso: "web (G-WEB): https://antigravity.google/docs/cli/reference e https://antigravity.google/docs/slash-commands"
+    url: "https://antigravity.google/docs/cli/reference"
+    lido_em: 2026-09-29
+    status: inventariada
+    sensibilidade: publico
+  - id: SRC-07
+    nome: "Doc oficial do Antigravity: permissões e sandbox"
+    classe: externa
+    origem_raiz: R-AGY-DOCS
+    acesso: "web (G-WEB): https://antigravity.google/docs/permissions e https://antigravity.google/docs/sandbox"
+    url: "https://antigravity.google/docs/permissions"
+    lido_em: 2026-09-29
+    status: inventariada
+    sensibilidade: publico
+    limitacoes: "a doc não deixa claro se o --sandbox do CLI funciona no Windows (o app 2.0 ganhou sandbox no Windows na 2.15.1)"
+  - id: SRC-08
+    nome: "Doc oficial do Antigravity: modos, headless, subagentes, skills, rules, hooks, plugins, MCP, projetos, artifacts"
+    classe: externa
+    origem_raiz: R-AGY-DOCS
+    acesso: "web (G-WEB): https://antigravity.google/docs (páginas cli/modes, cli/headless, subagents, skills, rules, hooks, plugins, mcp, projects, cli/artifacts, sidecars)"
+    url: "https://antigravity.google/docs"
+    lido_em: 2026-09-29
+    status: inventariada
+    sensibilidade: publico
+  - id: SRC-09
+    nome: "Changelog do Antigravity (CLI e app 2.0)"
+    classe: externa
+    origem_raiz: R-AGY-DOCS
+    acesso: "web (G-WEB): https://antigravity.google/docs/changelog"
+    url: "https://antigravity.google/docs/changelog"
+    lido_em: 2026-09-29
+    status: inventariada
+    sensibilidade: publico
+    limitacoes: "as entradas das versões 1.2.12 e 1.2.13 do CLI ainda não estavam publicadas"
+  - id: SRC-10
+    nome: "Doc oficial do ADK (adk.dev): LoopAgent, grafos, Agent Config, avaliação, callbacks, deploy"
+    versao: "doc da 2.10.0"
+    classe: externa
+    origem_raiz: R-ADK-DOCS
+    acesso: "web (G-WEB): https://adk.dev (google.github.io/adk-docs redireciona para lá)"
+    url: "https://adk.dev"
+    lido_em: 2026-09-29
+    status: inventariada
+    sensibilidade: publico
+  - id: SRC-11
+    nome: "Releases do google/adk-python"
+    classe: externa
+    origem_raiz: R-ADK-DOCS
+    acesso: "web (G-WEB): https://github.com/google/adk-python/releases"
+    url: "https://github.com/google/adk-python/releases"
+    lido_em: 2026-09-29
+    status: inventariada
+    sensibilidade: publico
+    cobre: "2.3.0 de 18/06/2026; 2.10.0 de 25/09/2026"
+  - id: SRC-14
+    nome: "GitHub CLI e Git: ajuda local dos comandos usados no Lab 4"
+    versao: "gh 2.97.0 · git 2.52.0"
+    classe: primaria_sistema
+    origem_raiz: R-GH-GIT-LOCAL
+    acesso: "local: gh repo create --help, gh pr --help, gh pr create --help, git switch -h"
+    status: inventariada_local
+    sensibilidade: publico
+    cobre: "gh repo create --source --private --push, gh pr create --template, gh pr checks, gh api, git switch -c"
